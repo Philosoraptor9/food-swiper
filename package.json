@@ -1,0 +1,30 @@
+{
+  "name": "food-swiper",
+  "version": "1.0.0",
+  "description": "Web app for users to explore and save their favorite foods by type, meal, and area // Restaurant // Pic of food // Name // Address // Menu",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.3.4",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Philosoraptor9/food-swiper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Philosoraptor9/food-swiper/issues"
+  },
+  "homepage": "https://github.com/Philosoraptor9/food-swiper#readme"
+}
