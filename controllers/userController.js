@@ -3,11 +3,7 @@ const router = express.Router();
 const User = require("../models/users");
 const bcrypt = require('bcryptjs');
 
-// future loggedIn function goes here
-// we also make a variable out of future loggedIn user, call it loggedInUser
-
-router.get('/', async (req, res) => {
-    // try + catch goes here
+router.get('/users/profile', async (req, res) => {
     try {
         const foundUser = await User.findById(req.session.userId);
         res.render('users/index.ejs', {
@@ -18,12 +14,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/new', async (req, res) => {
+router.get('/users/new', async (req, res) => {
     res.render('users/new.ejs');
 });
 
-// user edit route
-router.get('/edit', async (req, res) => {
+// Edit User
+router.get('/users/edit', async (req, res) => {
     try {
         const foundUser = await User.findById(req.session.userId);
         res.render('users/edit.ejs', {
@@ -34,10 +30,9 @@ router.get('/edit', async (req, res) => {
     }
 });
 
-// user update/put route
 
-// Delete Route
-router.delete('/:id', async (req, res) => {
+// Delete User
+router.delete('/users/:id', async (req, res) => {
     try{
         const user = User.findByIdAndDelete(req.params.id);
             for (let i = 0; user.reviews.length; i++) {        
@@ -52,16 +47,16 @@ router.delete('/:id', async (req, res) => {
 
 router.post('/', async (req, res)=>{
     try{
-        console.log(req.body);
+        // console.log(req.body);
         const hashedPassword = await bcrypt.hash(req.body.password, await bcrypt.genSalt(12));
-        console.log(hashedPassword);
+        // console.log(hashedPassword);
         const newUser = {
             username: req.body.username,
             password: hashedPassword
         }
         const user = await User.create(newUser);
         req.session.userId = user._id;
-        res.redirect('/users')
+        res.redirect('./index')
     }catch(err){
         res.send(err);
     }

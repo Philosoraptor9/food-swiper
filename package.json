@@ -4,6 +4,8 @@
   "description": "Web app for users to explore and save their favorite foods by type, meal, and area // Restaurant // Pic of food // Name // Address // Menu",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^3.0.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
