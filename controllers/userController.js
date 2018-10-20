@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/users');
 const bcrypt = require('bcryptjs');
 
+// Login route
 router.get('/login', async (req, res) => {
     try {
     const foundUser = await User.findById(req.session.userId);
@@ -14,9 +15,11 @@ router.get('/login', async (req, res) => {
     }
 });
 
-router.get('/new', async (req, res) => {
+// New user route
+router.get('/new', (req, res) => {
     res.render('users/new.ejs');
 });
+
 
 // Edit User
 router.get('/edit', async (req, res) => {
@@ -30,6 +33,11 @@ router.get('/edit', async (req, res) => {
     }
 });
 
+
+// Show profile route (will also show all the foods you've swiped right for)
+router.get('/:id', (req, res) =>{
+    res.render('users/profile.ejs');
+});
 
 // Delete User
 router.delete('/:id', async (req, res) => {
