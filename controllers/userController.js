@@ -3,18 +3,6 @@ const router = express.Router();
 const User = require('../models/users');
 const bcrypt = require('bcryptjs');
 
-// Login route
-router.get('/login', async (req, res) => {
-    try {
-    const foundUser = await User.findById(req.session.userId);
-    res.render('index.ejs', {
-        user: foundUser       
-        });                        
-    }catch(err){
-        res.send(err);
-    }
-});
-
 // New user route
 router.get('/new', (req, res) => {
     res.render('users/new.ejs');

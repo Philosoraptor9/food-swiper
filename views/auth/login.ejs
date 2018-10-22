@@ -7,12 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>login here</h1>
-    <form><p>Username</p>
-        <input name ="username" type = "text"/>
-        <p>Password</p>
-        <input name ="username" type = "password"/>
-        <input type="submit" value="Submit">
+    <h1>Sign Up or Login Here</h1>
+    
+    <h1>Sign Up</h1> <small><%=message%></small>
+    <form action="/auth/register" method="POST">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <h1>Login</h1> <small><%=message%></small>
+    <form action="/auth/login" method="POST">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>
