@@ -1,0 +1,48 @@
+body {
+  background: url("food.jpeg")no-repeat center center fixed;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.stack {
+  width: 400px;
+  margin: 100px auto;
+}
+
+.card {
+  //Style of the card
+  height: 250px;
+  width: 400px;
+  max-width: 100%;
+  background: white;
+  border: 1px solid grey;
+  position: absolute;
+}
+
+.js-swiping-card {
+  transition: transform 0.5s;
+
+  &.done {
+    display: none;
+  }
+}
+
+//proper style for js mecanism
+.js-swiping-card {
+  transition: transform 0.5s;
+
+  &.done {
+    display: none;
+  }
+}
