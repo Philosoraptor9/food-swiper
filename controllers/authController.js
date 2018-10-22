@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
+// const Food = require('..models/foods');
 const bcrypt = require('bcryptjs');
 
 router.get('/login', async (req, res) => {
@@ -34,7 +35,7 @@ router.post('/login', async (req, res)=> {
         if (await bcrypt.compareSync(req.body.password, foundUser.password)){
             req.session.logged = true;
             req.session.userId = foundUser._id;
-            res.redirect('./index');
+            res.redirect('/food');
             }
         else {
             req.session.message = 'incorrect username or password';
