@@ -8,12 +8,20 @@
 </head>
 <body>
 
-    <h1>Here's the homepage</h1>
-    <form>Login
-        <input name ="username" type = "text"/>
+<h1>Here's the homepage</h1>
+    
+    <h1>Register</h1> 
+    <form action="/auth/register" method="POST">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <button type="submit">Login</button>
     </form>
-    <form>Password
-        <input name ="username" type = "password"/>
+
+    <h1>Login</h1> 
+    <form action="/auth/login" method="POST">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>

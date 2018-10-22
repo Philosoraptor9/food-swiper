@@ -1,29 +1,32 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const User = require("../models/users");
+const User = require('../models/users');
 const bcrypt = require('bcryptjs');
 
-router.get('/users/profile', async (req, res) => {
+// Login route
+router.get('/login', async (req, res) => {
     try {
-        const foundUser = await User.findById(req.session.userId);
-        res.render('users/index.ejs', {
-            user: foundUser       
+    const foundUser = await User.findById(req.session.userId);
+    res.render('index.ejs', {
+        user: foundUser       
         });                        
     }catch(err){
         res.send(err);
     }
 });
 
-router.get('/users/new', async (req, res) => {
+// New user route
+router.get('/new', (req, res) => {
     res.render('users/new.ejs');
 });
 
+
 // Edit User
-router.get('/users/edit', async (req, res) => {
+router.get('/edit', async (req, res) => {
     try {
-        const foundUser = await User.findById(req.session.userId);
-        res.render('users/edit.ejs', {
-            user: foundUser
+    const foundUser = await User.findById(req.session.userId);
+    res.render('users/edit.ejs', {
+        user: foundUser
         });  
     }catch(err){
         res.send(err)                
@@ -31,12 +34,17 @@ router.get('/users/edit', async (req, res) => {
 });
 
 
+// Show profile route (will also show all the foods you've swiped right for)
+router.get('/:id', (req, res) =>{
+    res.render('users/profile.ejs');
+});
+
 // Delete User
-router.delete('/users/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try{
-        const user = User.findByIdAndDelete(req.params.id);
-            for (let i = 0; user.reviews.length; i++) {        
-                await Review.findByIdAndDelete(user.reviews[i]._id)
+    const user = User.findByIdAndDelete(req.params.id);
+        for (let i = 0; user.reviews.length; i++) {        
+            await Review.findByIdAndDelete(user.reviews[i]._id)
         }   
         await User.findByIdAndDelete(req.params.id);
         res.redirect('/')                     
@@ -47,21 +55,20 @@ router.delete('/users/:id', async (req, res) => {
 
 router.post('/', async (req, res)=>{
     try{
-        // console.log(req.body);
-        const hashedPassword = await bcrypt.hash(req.body.password, await bcrypt.genSalt(12));
-        // console.log(hashedPassword);
-        const newUser = {
-            username: req.body.username,
-            password: hashedPassword
-        }
-        const user = await User.create(newUser);
-        req.session.userId = user._id;
-        res.redirect('./index')
+    // console.log(req.body);
+    const hashedPassword = await bcrypt.hash(req.body.password, await bcrypt.genSalt(12));
+    // console.log(hashedPassword);
+    const newUser = {
+        username: req.body.username,
+        password: hashedPassword
+    }
+    const user = await User.create(newUser);
+    req.session.userId = user._id;
+    res.redirect('./index')
     }catch(err){
         res.send(err);
     }
 })
-
 
 
 module.exports = router;

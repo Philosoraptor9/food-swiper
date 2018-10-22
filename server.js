@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const expressSession = require('express-session');
+const session = require('express-session');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const bcrypt = require('bcryptjs');
 mongoose.set('useCreateIndex', true)
 
 
@@ -13,24 +12,33 @@ const port = 3000;
 
 require('./db/db');
 
+const authController = require('./controllers/authController');
+const foodController = require('./controllers/foodController');
+const userController = require('./controllers/userController');
+
 app.use(methodOverride('_method'));
-app.use(bodyParser.urlencoded({useNewUrlParser: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('short'));
 
+app.use(session({
+  secret: 'shhhhhh',
+  resave: false,
+  saveUninitialized: false
+}));
 
-const authController = require('./controllers/authController');
-app.use('/authController', authController);
+// These dictate the url paths
 
-const foodController = require('./controllers/foodController');
-app.use('/foodController', foodController);
+app.use('/auth', authController);
 
-const userController = require('./controllers/userController');
-app.use('/userController', userController);
+app.use('/food', foodController);
+
+app.use('/user', userController);
 
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
   });
+
 
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
