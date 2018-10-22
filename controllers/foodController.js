@@ -1,16 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/users');
+const Foods= require('../models/foods');
 
 //Index Route
 router.get('/', (req, res) => {
-    res.render('foods/index.ejs');
-})
+console.log(Foods);
+      res.render('index.ejs', { foods:Foods});
+      
+
+
+
+});
 
 //Detail/show route - i.e. specific food clicked
-router.get('/:id', (req, res) => {
-    res.render('foods/detail.ejs');
-})
+
 
 
 module.exports = router;

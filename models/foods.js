@@ -1,11 +1,5 @@
 const mongoose = require('mongoose');
 
-const foodSchema = new mongoose.Schema ({
-    name: {type: String, required: true},
-    rating: {type: Number},
-    location: {type: String},
-    category: {type: String},
-    reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
-})
-
-module.exports = mongoose.model('Food', foodSchema);
+const food =  [ {name:"Burrito", resName:'Chiptole',Nameimg: "burrio image",location:"1600 California St #7, Denver, CO", ratings:4,category:'dinner'},
+				{name:"Pizza", resName:'The Walnut Room',img: "pizza image",location:"3131 Walnut St, Denver, CO 80205",ratings:4, category:'dinner'}];
+    module.exports =food;
