@@ -4,3 +4,4 @@ const food =  [ {name:"Burrito", resName:'Chiptole',Nameimg: "burrio image",loca
 				{name:"Pizza", resName:'The Walnut Room',img: "pizza image",location:"3131 Walnut St, Denver, CO 80205",ratings:4, category:'dinner'}];
     
 module.exports =food;
+
