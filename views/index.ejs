@@ -32,14 +32,14 @@
     <ul class='stack'>
       <%  for(let i=0; i<foods.length; i++) { %>
 
-        
+
           <li class="cards" style="bottom:25px;z-index:<%=i%>;">
 
             <div class="card  js-swiping-card" style="width: 18rem;">
             <img class="card-img-top" src="https://fakeimg.pl/250x200/" alt="Card image cap">
               <div class="card-body">
 
-                <h5 class="card-title"><%=foods[i].name %></h5>
+                <h5 class="card-title"><%=console.log(foods[i]._id) %></h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
