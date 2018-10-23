@@ -8,13 +8,6 @@ const requireLogin = require('../middleware/requireLogin');
 //Index Route
 router.get('/', (req, res) => {
 console.log(Foods);
-
-      res.render('index.ejs', { foods:Foods});
-
-
-
-
-=======
       res.render('index.ejs', {foods: Foods});
 
 });
