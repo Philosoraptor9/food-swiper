@@ -21,6 +21,7 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('short'));
 app.use(express.static(__dirname + '/front'));
+
 app.use(session({
   secret: 'shhhhhh',
   resave: false,
@@ -47,9 +48,9 @@ app.use('/food', foodController);
 app.use('/user', userController);
 
 
-app.get('/', (req, res) => {
-    res.render('index.ejs');
-  });
+// app.get('/', (req, res) => {
+//     res.render('index.ejs');
+//   });
 
 
 app.listen(port, () => {

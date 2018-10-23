@@ -21,7 +21,7 @@ li {
 }
 
 .card {
-  //Style of the card
+  /*Style of the card*/
   height: 250px;
   width: 400px;
   max-width: 100%;
@@ -38,7 +38,7 @@ li {
   }
 }
 
-//proper style for js mecanism
+/*proper style for js mecanism*/
 .js-swiping-card {
   transition: transform 0.5s;
 
