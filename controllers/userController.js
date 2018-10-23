@@ -3,9 +3,21 @@ const router = express.Router();
 const User = require('../models/users');
 const bcrypt = require('bcryptjs');
 
+// On Login -- put edit user on same page?? Or include link to edit page/partials navbar
+router.get('/', async (req, res) => {
+try {
+    const foundUser = await User.findById(req.session.userId);
+    res.render('users/profile.ejs', {
+        user: foundUser
+        });  
+    }catch(err){
+        res.send(err)                
+    }
+})
+
 // New user route
 router.get('/new', (req, res) => {
-    res.render('users/new.ejs');
+    res.render('auth/register.ejs');
 });
 
 
@@ -20,7 +32,6 @@ router.get('/edit', async (req, res) => {
         res.send(err)                
     }
 });
-
 
 // Show profile route (will also show all the foods you've swiped right for)
 router.get('/:id', (req, res) =>{
