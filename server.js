@@ -21,7 +21,6 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('short'));
 app.use(express.static(__dirname + '/front'));
-
 app.use(session({
   secret: 'shhhhhh',
   resave: false,

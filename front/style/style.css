@@ -21,7 +21,11 @@ li {
 }
 
 .card {
+<<<<<<< HEAD
   /*Style of the card*/
+=======
+  //Style of the card
+>>>>>>> 3448cd4282559e61737a2bc1a72f9c64cbb03c35
   height: 250px;
   width: 400px;
   max-width: 100%;
@@ -38,7 +42,11 @@ li {
   }
 }
 
+<<<<<<< HEAD
 /*proper style for js mecanism*/
+=======
+//proper style for js mecanism
+>>>>>>> 3448cd4282559e61737a2bc1a72f9c64cbb03c35
 .js-swiping-card {
   transition: transform 0.5s;
 
