@@ -19,10 +19,9 @@ if ( event.deltaX && deltaX > deltaThreshold || event.deltaX && deltaX < -1 * de
        });
 
      //Do something
-		console.log('Swipe done. \nCard:', $card, '\nDirection:', directionFactor);
+
 
 }
-	//If the threshold isn't reached, the card goes back to its initial place
   else {
   		transform = 'translate(0, 0) rotate(0)';
   		$card.css({
@@ -32,10 +31,10 @@ if ( event.deltaX && deltaX > deltaThreshold || event.deltaX && deltaX < -1 * de
 
 	}
   function swipeRight(event, $card) {
+		console.log(event);
   	var transform;
   	deltaX = event.deltaX;
   	transform = 'translate(' + deltaX * 0.8 + 'px, 0) rotate(-5deg)';
-    //translate the card on swipe
   	$card.css({
   		'transform': transform,
   	});
@@ -46,20 +45,16 @@ function swipeLeft(event, $card) {
 	var transform;
 	deltaX = event.deltaX;
 	transform = 'translate(' + deltaX * 0.8 + 'px, 0) rotate(5deg)';
-  //translate the card on swipe
 	$card.css({
 		'transform': transform,
 	});
 }
-// Subscribe to a desired event
 $('.js-swiping-card').each(function(index, element) {
 	var $card = $(element)
 
   console.log($card);
-		//Add hammer events on element
 		hammertime = new Hammer(element);
 
-  //Mobile gesture
 	hammertime.on('panleft swipeleft', function(event) {
 		swipeLeft(event, $card);
 	});
