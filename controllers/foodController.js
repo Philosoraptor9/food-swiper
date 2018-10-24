@@ -1,28 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const Foods= require('../models/foods');
+const Food = require('../models/foods');
 const requireLogin = require('../middleware/requireLogin');
 //^^ set a timer/message on this? Right now when used it immediately redirects back to the login page
 
 
-//Index Route
-router.get('/', (req, res) => {
-console.log(Foods);
-
-      res.render('index.ejs', { foods:Foods});
-
-
-
-
-=======
-      res.render('index.ejs', {foods: Foods});
-
+//Index Route - requireLogin
+router.get('/', async (req, res) => {
+     try{
+      const food = await Food.find({});
+      res.render('index.ejs', {food: food});
+      } catch(err){
+            res.send(err);
+      }
 });
 
-//Detail/show route - i.e. specific food clicked
-router.get('/:id', (req, res) => {
-      res.render('foods/detail.ejs', {foods: Foods.id})
+//Detail/show route - i.e. specific food clicked - requireLogin
+router.get('/:id', async (req, res) => {
+     try{ const foundFood = await Food.findById(req.session.foodId);
+      res.render('foods/detail.ejs', {food: foundFood})
+      } catch(err){
+            res.send(err);
+      }
 });
+
 
 
 module.exports = router;

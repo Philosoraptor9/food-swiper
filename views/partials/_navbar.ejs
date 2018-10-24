@@ -1,0 +1,18 @@
+<% if (typeof message != undefined) { %>
+    <%= message %>
+<% } %>
+
+<!--- if user is logged in -->
+<nav>
+    <a href = '/'>Homepage</a>
+    <a href = '/users/profile'>Your profile</a>
+    <a href = '/auth/logout'>Logout</a>
+</nav>
+
+<!--- if not logged in -->
+<nav>
+    <a href = '/'>Homepage</a>
+    <a href = '/auth/login'>Login/Register</a>
+</nav>
+
+<% include ./partials/_navbar %>
