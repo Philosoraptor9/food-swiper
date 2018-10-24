@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
-// const Food = require('../models/foods');
+const Food = require('../models/foods');
 const bcrypt = require('bcryptjs');
 const requireLogin = require('../middleware/requireLogin');
 
 
 // On Login -- put edit user on same page?? Or include link to edit page/partials navbar
-router.get('/', async (req, res) => {
+router.get('/', requireLogin, async (req, res) => {
 try {
     const foundUser = await User.findById(req.session.userId);
     res.render('users/profile.ejs', {
@@ -25,7 +25,7 @@ router.get('/new', (req, res) => {
 
 
 // Edit User - put route??
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', requireLogin, async (req, res) => {
     try {
     const foundUser = await User.findById(req.session.userId);
     res.render('users/edit.ejs', {
@@ -37,12 +37,12 @@ router.get('/:id/edit', async (req, res) => {
 });
 
 // Show profile route (will also show all the foods you've swiped right for)
-router.get('/:id', (req, res) =>{
+router.get('/:id', requireLogin, async (req, res) =>{
     res.render('users/profile.ejs');
 });
 
 // Delete User
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireLogin, async (req, res) => {
     try{
     const user = User.findByIdAndDelete(req.params.id);
         for (let i = 0; user.foods.length; i++) {        

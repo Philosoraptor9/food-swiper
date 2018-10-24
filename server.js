@@ -86,7 +86,7 @@ app.use('/user', userController);
 
 
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    res.render('auth/login.ejs');
   });
 
 const port = 3000;
