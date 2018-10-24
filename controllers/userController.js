@@ -6,15 +6,17 @@ const bcrypt = require('bcryptjs');
 const requireLogin = require('../middleware/requireLogin');
 
 
+
+
 // On Login -- put edit user on same page?? Or include link to edit page/partials navbar
 router.get('/', async (req, res) => {
 try {
     const foundUser = await User.findById(req.session.userId);
     res.render('users/profile.ejs', {
         user: foundUser
-        });  
+        });
     }catch(err){
-        res.send(err)                
+        res.send(err)
     }
 })
 
@@ -30,9 +32,9 @@ router.get('/:id/edit', async (req, res) => {
     const foundUser = await User.findById(req.session.userId);
     res.render('users/edit.ejs', {
         user: foundUser
-        });  
+        });
     }catch(err){
-        res.send(err)                
+        res.send(err)
     }
 });
 
@@ -45,17 +47,24 @@ router.get('/:id', (req, res) =>{
 router.delete('/:id', async (req, res) => {
     try{
     const user = User.findByIdAndDelete(req.params.id);
+<<<<<<< HEAD
+        for (let i = 0; user.reviews.length; i++) {
+            await Review.findByIdAndDelete(user.reviews[i]._id)
+        }
+=======
         for (let i = 0; user.foods.length; i++) {        
             await Food.findByIdAndDelete(user.foods[i]._id)
         }   
+>>>>>>> 2049ffd2d06ad2ba28419b9c46b403907e0d5957
         await User.findByIdAndDelete(req.params.id);
-        res.redirect('/')                     
+        res.redirect('/')
     } catch (err) {
         res.send(err);
-    }    
+    }
 })
 
 router.post('/', async (req, res)=>{
+   console.log(req.body.food);
     try{
     // console.log(req.body);
     const hashedPassword = await bcrypt.hash(req.body.password, await bcrypt.genSalt(12));
@@ -71,6 +80,13 @@ router.post('/', async (req, res)=>{
         res.send(err);
     }
 })
+router.put('/food',(req, res)=>{
+  let id = req.body.foodsid
+  console.log(id);
+  req.session.userId.update({
+    $push:{foods:id}
+  })
 
+})
 
 module.exports = router;
