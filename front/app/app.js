@@ -2,16 +2,30 @@
 var deltaX = 0;
 var deltaY = 0;
 
-var index= $(".stack").children().length-1
+var index= 0
 var deltaThreshold = 100
+function postItem(id) {
+        $.ajax({
+            type: "PUT",
+            url: "/user/food",
+            timeout: 2000,
+
+						data: { foodsid: id }
+
+
+        });
+
+    }//postItem()
+
 function swipeEnded(event, direction, $card) {
 	var  directionFactor,
 		   transform;
 
 if ( event.deltaX && deltaX > deltaThreshold || event.deltaX && deltaX < -1 * deltaThreshold || direction) {
 		transform = 'translate(' + directionFactor * -100 + 'vw, 0) rotate(' + directionFactor * -5 + 'deg)';
-
-				index--;
+				var id= $(`.card-id${index}`).text();
+				postItem(id);
+				index++;
        	$card.delay(100)
        	$card.queue(function () {
          $(this).css('transform', transform).dequeue();
@@ -36,8 +50,7 @@ if ( event.deltaX && deltaX > deltaThreshold || event.deltaX && deltaX < -1 * de
   function swipeRight(event, $card) {
 
   	var transform;
-		var para = $(`.card-id${index}`).text();
-		console.log(para);
+
 
   	deltaX = event.deltaX;
   	transform = 'translate(' + deltaX * 0.8 + 'px, 0) rotate(-5deg)';
