@@ -80,13 +80,5 @@ router.post('/', async (req, res)=>{
         res.send(err);
     }
 })
-router.put('/food',(req, res)=>{
-  let id = req.body.foodsid
-  console.log(id);
-  req.session.userId.update({
-    $push:{foods:id}
-  })
-
-})
 
 module.exports = router;
