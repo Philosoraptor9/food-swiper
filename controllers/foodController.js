@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+const express = require('express');
+const router = express.Router();
+var Food= require('../models/foods');
+
+//Index Route
+router.get('/', async(req, res) => {
+      const food = await Food.find({});
+      res.render('index.ejs', { food:food});
+
+
+
+});
+
+
+
+
+module.exports = router;
+=======
 const express = require('express');
 const router = express.Router();
 const Food = require('../models/foods');
@@ -27,3 +46,4 @@ router.get('/:id', async (req, res) => {
 
 
 module.exports = router;
+>>>>>>> 550ab1ac685e24b085d2e9c6920cb70381d11e68
