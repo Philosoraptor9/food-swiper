@@ -27,9 +27,7 @@ router.get('/:id', async (req, res) => {
 
 
 module.exports = router;
-<<<<<<< HEAD
-=======
-=======
+
 const express = require('express');
 const router = express.Router();
 const Food = require('../models/foods');
@@ -59,5 +57,3 @@ router.get('/:id', async (req, res) => {
 
 
 module.exports = router;
->>>>>>> 550ab1ac685e24b085d2e9c6920cb70381d11e68
->>>>>>> 2049ffd2d06ad2ba28419b9c46b403907e0d5957
