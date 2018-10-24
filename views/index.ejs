@@ -31,6 +31,9 @@
   <div class="container ">
     <ul class='stack'>
 
+      <%  for(let i=0; i<food.length; i++) { %>
+
+
       </p><%=food.length %></p>
 
       <%  for(let i=0; i<food.length; i++) { %>
@@ -40,6 +43,7 @@
             <div class="card  js-swiping-card " style="width: 18rem;">
             <img class="card-img-top" src="https://fakeimg.pl/250x200/" alt="Card image cap">
               <div class="card-body">
+
 
                 <h5 class="card-title"><%=food[i].name %></h5>
                 <p class="card-id<%=i%>" hidden><%=food[i]._id %></p>
