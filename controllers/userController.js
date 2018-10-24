@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
+// const Food = require('../models/foods');
 const bcrypt = require('bcryptjs');
+const requireLogin = require('../middleware/requireLogin');
+
 
 
 
@@ -19,12 +22,12 @@ try {
 
 // New user route
 router.get('/new', (req, res) => {
-    res.render('auth/register.ejs');
+    res.render('auth/login.ejs');
 });
 
 
-// Edit User
-router.get('/edit', async (req, res) => {
+// Edit User - put route??
+router.get('/:id/edit', async (req, res) => {
     try {
     const foundUser = await User.findById(req.session.userId);
     res.render('users/edit.ejs', {
@@ -44,9 +47,15 @@ router.get('/:id', (req, res) =>{
 router.delete('/:id', async (req, res) => {
     try{
     const user = User.findByIdAndDelete(req.params.id);
+<<<<<<< HEAD
         for (let i = 0; user.reviews.length; i++) {
             await Review.findByIdAndDelete(user.reviews[i]._id)
         }
+=======
+        for (let i = 0; user.foods.length; i++) {        
+            await Food.findByIdAndDelete(user.foods[i]._id)
+        }   
+>>>>>>> 2049ffd2d06ad2ba28419b9c46b403907e0d5957
         await User.findByIdAndDelete(req.params.id);
         res.redirect('/')
     } catch (err) {
