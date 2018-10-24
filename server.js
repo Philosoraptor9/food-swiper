@@ -16,8 +16,8 @@ const methodOverride = require('method-override');
 
 //Session middleware
 const session = require('express-session');
-const passport = require('passport');
 const MongoDBStore = require('connect-mongodb-session')(session);
+// const passport = require('passport');
 // const localStrategy = require('passport-local').Strategy;
 // const passportJWT = require('passport-jwt');
 // const JWTStrategy = passportJWT.Strategy;
