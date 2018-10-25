@@ -9,13 +9,19 @@
 <body>
     <h1>Here's your profile and all your foods</h1>
 
-   <form> <p>Edit your profile</p> </form>
+   <form action="/user/<%=user.id%>?_method=PUT" method="POST"> <p>Edit your profile</p> </form>
 
-    <form> <p>Delete your profile</p> </form>
+    <form action="/user/<%=user.id%>?_method=DELETE" method="POST"> <p>Delete your profile</p> </form>
 
-    <form> <p>Edit da food you swiped</p> </form>
+    <!--- make sure this is only deleting from the user's food array and not the whole app --->
+    <% for (let i = 0; i < user.userFoods.length; i++) { %>
 
-    <form> <p>Delete dat food</p> </form>
+    <form action="/user/<%=user.userFoods[i].id%>?_method=DELETE" method="POST"> <p>Delete dat food</p> </form>
+
+   <% } %>
+    
+
+     <a href="/auth/logout">Logout</a>
 
 </body>
 </html>
