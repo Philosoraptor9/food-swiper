@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style/profile.css" media="screen" title="no title" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:600i" rel="stylesheet">
 </head>
 <body>
     <h1>Here's your profile and all your foods</h1>
 
-   <form action="/user/<%=user.id%>?_method=PUT" method="POST"> <p>Change your username</p> 
+   <form action="/user/<%=user.id%>?_method=PUT" method="POST"> <p>Change your username</p>
     <input type="text" name="name" value="<%=user.username%>">
     <button type="submit">Change</button>
     </form>
@@ -19,17 +23,85 @@
     </form>
 
     <!--- make sure this is only deleting from the user's food array and not the whole app --->
-    <ul>
-    <% for (let i = 0; i < user.userFoods.length; i++) { %>
-        <li><a href="user.userFoods[i].name"></a></li>
 
-    <form action="/user/<%=user.userFoods[i].id%>?_method=DELETE" method="POST"> 
-        <p>Delete dat food</p> </form>
+    <div class="container ">
 
-   <% } %>
-    </ul>
 
-     <a href="/auth/logout">Logout</a>
 
+      <div class="row">
+        <%  for(let i=0; i<user.userFoods.length; i++) { %>
+
+        <div class="cards " style="bottom:25px;">
+
+          <div class="card  " style="width: 18rem;">
+            <img class="card-img-top" src="<%=user.userFoods[i].img%>" alt="Card image cap">
+
+            <div class="card-body">
+
+              <h5 class="card-title">
+                <%=user.userFoods[i].name%>
+              </h5>
+
+              <%  for(let j=0; j<user.userFoods[i].rating;j++) { %>
+
+              <span class="fa fa-star checked"></span>
+
+              <% } %>
+              <%  if(user.userFoods[i].rating<5){ %>
+
+              <%  for(let j=0; j<5-user.userFoods[i].rating;j++) { %>
+
+              <span class="fa fa-star"></span>
+
+
+              <% } %>
+
+
+              <% } %>
+
+              <br />
+                <br />
+              <p class="card-id<%=i%>" hidden><%=user.userFoods[i]._id %></p>
+              <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample<%=i%>" aria-expanded="false" aria-controls="collapseExample">
+                Information
+              </button>
+              </p>
+              <div class="collapse  " id="collapseExample<%=i%>">
+                <div class="card-body">
+                  <h6>
+                    <%=user.userFoods[i].resName%><br/>
+                    <%=user.userFoods[i].location%><br/>
+                  </h6>
+                </div>
+              </div>
+
+
+            </div>
+
+          </div>
+          <form action="/user/<%=user.userFoods[i].id%>?_method=DELETE" method="POST">
+            <button class="btn btn" type="submit" >
+              Delete
+            </button> </form>
+
+        </div>
+        <% } %>
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+
+       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>

@@ -29,7 +29,7 @@ router.post('/', async (req, res)=>{
     }
 })
 
-// Show/edit profile route (will also show all the foods you've swiped right for - 
+// Show/edit profile route (will also show all the foods you've swiped right for -
 // add foods in this route)
 router.get('/:id', requireLogin, async (req, res, next) =>{
     try {

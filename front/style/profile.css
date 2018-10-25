@@ -1,0 +1,40 @@
+body {
+  background: url("food.jpeg")no-repeat center center fixed;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.checked {
+    color: rgb(255,215,0);
+}
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+h1 {
+
+  font-family: 'Exo 2', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+}
+.nav-item {
+  color: black;
+}
+.nav-link{
+  color: black;
+}
+
+.btn{
+background-color:rgb(233, 38, 30)
+}
+
+.card-body{
+  background-color:rgb(79, 118, 242) ;
+  padding: 0.25rem;
+  color:rgb(47, 47, 47)
+}
