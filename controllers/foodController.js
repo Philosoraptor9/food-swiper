@@ -8,7 +8,7 @@ const requireLogin = require('../middleware/requireLogin');
 
 
 //Index Route - requireLogin
-router.get('/', async (req, res) => {
+router.get('/', requireLogin, async (req, res) => {
      try{
       const food = await Food.find({});
       res.render('index.ejs', {food: food});
@@ -18,8 +18,9 @@ router.get('/', async (req, res) => {
 });
 
 //Detail/show route - i.e. specific food clicked - requireLogin
-router.get('/:id', async (req, res) => {
-     try{ const foundFood = await Food.findById(req.session.foodId);
+router.get('/:id', requireLogin, async (req, res) => {
+     try{ 
+      const foundFood = await Food.findById(req.session.foodId);
       res.render('foods/detail.ejs', {food: foundFood})
       } catch(err){
             res.send(err);
@@ -27,7 +28,7 @@ router.get('/:id', async (req, res) => {
 });
 
 //Index Route - requireLogin
-router.get('/', async (req, res) => {
+router.get('/', requireLogin, async (req, res) => {
      try{
       const food = await Food.find({});
       res.render('index.ejs', {food: food});
@@ -37,8 +38,9 @@ router.get('/', async (req, res) => {
 });
 
 //Detail/show route - i.e. specific food clicked - requireLogin
-router.get('/:id', async (req, res) => {
-     try{ const foundFood = await Food.findById(req.params.foodId);
+router.get('/:id', requireLogin, async (req, res) => {
+     try{ 
+      const foundFood = await Food.findById(req.params.foodId);
       res.render('foods/detail.ejs', {food: foundFood})
       } catch(err){
             res.send(err);
@@ -49,12 +51,12 @@ router.get('/:id', async (req, res) => {
 router.post('/:id/like', async (req, res)=> {
       try {
       const user = await User.findById(req.session.userId);
-      user.foods.push(req.params.id);
+      user.userFoods.push(req.params.id);
       await user.save();
       res.json(user);
       } catch(err){
-      res.send(err);
+            res.send(err);
       }
-})
+});
 
 module.exports = router;
