@@ -21,8 +21,13 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#about"><h2>My Food</h2></a>
+                <a class="nav-link js-scroll-trigger" href="/user/<%=user._id%>"><h2>My Food</h3></a>
+
               </li>
+              <li class="nav-item">
+              <a class="nav-link js-scroll-trigger"  href="/auth/logout"><h2>Logout</h2></a>
+            </li>
+
              </ul>
           </div>
         </div>
@@ -66,7 +71,7 @@
 
             <br />
               <br />
-            <p class="card-id<%=i%>" hidden><%=food[i]._id %></p>
+            <p class="card-id<%=i%>" ><%=food[i]._id %></p>
             <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample<%=i%>" aria-expanded="false" aria-controls="collapseExample">
               Information
             </button>
@@ -94,13 +99,11 @@
   </div>
 
 </div>
-<a href="/user/<%=user._id%>">My Profile</a>
-<a href="/auth/logout">Logout</a>
+
 
 
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->>>>>>>> master
-
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>

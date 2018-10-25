@@ -13,6 +13,7 @@ router.get('/register', async (req, res) => {
 });
 
 router.post('/register', async (req, res)=> {
+    try{
     console.log(req.body);
     const password = req.body.password;
     const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(12));
@@ -23,11 +24,17 @@ router.post('/register', async (req, res)=> {
     userEntry.password = passwordHash;
 
     const user = await User.create(userEntry);
+    const foundUser = await User.findOne({username: req.body.username});
     console.log(user);
     // req.session.username = req.body.username;
     req.session.logged = true;
     req.session.message = '';
+    req.session.userId = foundUser._id;
+    req.session.user = foundUser;
     res.redirect('/food');
+    }catch(err){
+        console.log(err);
+    }
 });
 
 router.post('/login', async (req, res)=> {

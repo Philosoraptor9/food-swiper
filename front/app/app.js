@@ -2,7 +2,7 @@
 var deltaX = 0;
 var deltaY = 0;
 
-var index= 0
+var index=$('ul.stack li').length-1;
 var deltaThreshold = 100
 function postItem(id) {
 
@@ -25,9 +25,10 @@ function swipeEnded(event, direction, $card) {
 
 if ( event.deltaX && deltaX > deltaThreshold || event.deltaX && deltaX < -1 * deltaThreshold || direction) {
 		transform = 'translate(' + directionFactor * -100 + 'vw, 0) rotate(' + directionFactor * -5 + 'deg)';
+				console.log(index);
 				var id= $(`.card-id${index}`).text();
 				postItem(id);
-				index++;
+				index--;
        	$card.delay(100)
        	$card.queue(function () {
          $(this).css('transform', transform).dequeue();
