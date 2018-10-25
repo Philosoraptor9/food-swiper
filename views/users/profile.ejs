@@ -13,8 +13,8 @@
 <body>
     <h1>Here's your profile and all your foods</h1>
 
-   <form action="/user/<%=user.id%>?_method=PUT" method="POST"> <p>Change your username</p>
-    <input type="text" name="name" value="<%=user.username%>">
+   <form action="/user/<%=user._id%>?_method=PUT" method="POST"> <p>Change your username</p>
+    <input type="text" name="username" value="<%=user.username%>">
     <button type="submit">Change</button>
     </form>
 
@@ -79,8 +79,8 @@
             </div>
 
           </div>
-          <form action="/user/<%=user.userFoods[i].id%>?_method=DELETE" method="POST">
-            <button class="btn btn" type="submit" >
+          <form action="/user/foods/<%=user.userFoods[i]._id%>?_method=DELETE" method="POST">
+            <button class="btn btn" type="submit">
               Delete
             </button> </form>
 

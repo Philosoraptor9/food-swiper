@@ -12,11 +12,8 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/', async (req, res)=>{
-// console.log(req.body.food);
     try{
-    // console.log(req.body);
     const hashedPassword = await bcrypt.hash(req.body.password, await bcrypt.genSalt(12));
-    // console.log(hashedPassword);
     const newUser = {
         username: req.body.username,
         password: hashedPassword
@@ -44,11 +41,16 @@ router.get('/:id', requireLogin, async (req, res, next) =>{
 });
 
 // Edit user
-router.put('/:id', (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body, (err, updateUser) => {
-      res.redirect('users/profile.ejs');
-    });
+router.put('/:id', async (req, res) => {
+    try{
+    await User.findByIdAndUpdate(req.params.id, req.body)
+    console.log(User.username)
+      res.redirect(`/user/${req.params.id}`);
+    }catch(err){
+        res.send(err);   
+    }
 });
+
 
 // Delete User
 router.delete('/:id', requireLogin, async (req, res) => {
@@ -57,6 +59,19 @@ router.delete('/:id', requireLogin, async (req, res) => {
         res.redirect('/')
     } catch (err) {
         res.send(err);
+    }
+})
+
+// Delete food from user array
+router.delete('/foods/:id', async (req, res) => {
+    try{
+    const user = await User.findById(req.session.userId);
+     await user.userFoods.splice(user.userFoods.indexOf(req.params.id), 1)
+     await user.save()
+     console.log(req.body);
+     res.redirect(`/user/${req.session.userId}`)
+    } catch (err) {
+       res.send(err);
     }
 })
 
