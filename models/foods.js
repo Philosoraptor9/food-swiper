@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-
 
 
 const foodSchema = new mongoose.Schema({
@@ -12,4 +10,4 @@ const foodSchema = new mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('Food', foodSchema);;
+module.exports = mongoose.model('Food', foodSchema);

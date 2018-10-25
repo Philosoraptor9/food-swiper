@@ -5,14 +5,15 @@ var deltaY = 0;
 var index= 0
 var deltaThreshold = 100
 function postItem(id) {
+		console.log("trying to like the food" + id);
         $.ajax({
-            type: "PUT",
-            url: "/user/food",
-            timeout: 2000,
-
-						data: { foodsid: id }
-
-
+            type: "POST",
+            url: "/food/" + id + "/like",
+			timeout: 2000,
+			success: function(data){
+				console.log(data)
+				console.log("got AJAX");
+			}
         });
 
     }//postItem()
