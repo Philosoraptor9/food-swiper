@@ -1,73 +1,112 @@
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link rel="stylesheet" href="/style/style.css" media="screen" title="no title" charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Food Swiper</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">My Food</a>
-            </li>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-          </ul>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/style/style.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Exo+2:600i" rel="stylesheet">
+  <title></title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand js-scroll-trigger" href="#page-top"><h1>Food Swiper</h1></a>
+
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#about"><h2>My Food</h2></a>
+              </li>
+             </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
 
   <div class="container ">
     <ul class='stack'>
 
-      </p><%=food.length %></p>
+
 
       <%  for(let i=0; i<food.length; i++) { %>
 
-          <li class="cards "  style="bottom:25px;z-index:<%=i%>;">
+      <li class="cards " style="bottom:25px;z-index:<%=i%>;">
 
-            <div class="card  js-swiping-card " style="width: 18rem;">
-            <img class="card-img-top" src="https://fakeimg.pl/250x200/" alt="Card image cap">
+        <div class="card  js-swiping-card " style="width: 18rem;">
+          <img class="card-img-top" src="<%=food[i].img%>" alt="Card image cap">
+
+          <div class="card-body">
+
+            <h5 class="card-title">
+              <%=food[i].name%>
+            </h5>
+
+            <%  for(let j=0; j<food[i].rating;j++) { %>
+
+            <span class="fa fa-star checked"></span>
+
+            <% } %>
+            <%  if(food[i].rating<5){ %>
+
+            <%  for(let j=0; j<5-food[i].rating;j++) { %>
+
+            <span class="fa fa-star"></span>
+
+            <% } %>
+
+
+            <% } %>
+
+            <br />
+              <br />
+            <p class="card-id<%=i%>" hidden>
+              <%=food[i]._id %>
+            </p>
+            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample<%=i%>" aria-expanded="false" aria-controls="collapseExample">
+              Information
+            </button>
+            </p>
+            <div class="collapse  " id="collapseExample<%=i%>">
               <div class="card-body">
-
-                <h5 class="card-title"><%=food[i].name %></h5>
-                <p class="card-id<%=i%>" hidden><%=food[i]._id %></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-
+                <h6>
+                  <%=food[i].resName%><br/>
+                  <%=food[i].location%><br/>
+                </h6>
               </div>
+            </div>
 
 
-              </div>
-            </li>
-              <% } %>
-            </ul>
+          </div>
+
+        </div>
 
 
-</div>
+      </li>
+      <% } %>
+    </ul>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="/app/app.js"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/app/app.js"></script>
+</body>
+
 </html>
