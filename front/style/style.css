@@ -6,7 +6,9 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
-
+.checked {
+    color: rgb(255,215,0);
+}
 ul {
   padding: 0;
 }
@@ -14,7 +16,18 @@ ul {
 li {
   list-style: none;
 }
+h1 {
 
+  font-family: 'Exo 2', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+}
+.nav-item {
+  color: black;
+}
+.nav-link{
+  color: black;
+}
 .stack {
   width: 400px;
   margin: 100px auto;
@@ -29,6 +42,15 @@ li {
   border: 1px solid grey;
   position: absolute;
 }
+.btn{
+background-color:rgb(233, 38, 30)
+}
+
+.card-body{
+  background-color:rgb(79, 118, 242) ;
+  padding: 0.25rem;
+  color:rgb(47, 47, 47)
+}
 
 .js-swiping-card {
   transition: transform 0.5s;
@@ -37,17 +59,10 @@ li {
     display: none;
   }
 }
-<<<<<<< HEAD
-
-
-=======
-
-/*proper style for js mecanism*/
->>>>>>> 2049ffd2d06ad2ba28419b9c46b403907e0d5957
 .js-swiping-card {
   transition: transform 0.5s;
 
-  &.done {
+  &.done {rgb(138, 110, 242)
     display: none;
   }
 }

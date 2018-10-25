@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var foodSchema = mongoose.Schema({
+
 
 
 const foodSchema = new mongoose.Schema({
