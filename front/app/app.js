@@ -5,6 +5,7 @@ var deltaY = 0;
 var index= 0
 var deltaThreshold = 100
 function postItem(id) {
+
 		console.log("trying to like the food" + id);
         $.ajax({
             type: "POST",

@@ -19,7 +19,7 @@ router.get('/', requireLogin, async (req, res) => {
 
 //Detail/show route - i.e. specific food clicked - requireLogin
 router.get('/:id', requireLogin, async (req, res) => {
-     try{ 
+     try{
       const foundFood = await Food.findById(req.session.foodId);
       res.render('foods/detail.ejs', {food: foundFood})
       } catch(err){
@@ -28,7 +28,7 @@ router.get('/:id', requireLogin, async (req, res) => {
 });
 
 //Index Route - requireLogin
-router.get('/', async (req, res) => {
+router.get('/', requireLogin, async (req, res) => {
      try{
       const food = await Food.find({});
       res.render('index.ejs', {food: food});
@@ -38,8 +38,8 @@ router.get('/', async (req, res) => {
 });
 
 //Detail/show route - i.e. specific food clicked - requireLogin
-router.get('/:id', async (req, res) => {
-     try{ 
+router.get('/:id', requireLogin, async (req, res) => {
+     try{
       const foundFood = await Food.findById(req.params.foodId);
       res.render('foods/detail.ejs', {food: foundFood})
       } catch(err){
@@ -50,13 +50,18 @@ router.get('/:id', async (req, res) => {
 // Post swiped food to user
 router.post('/:id/like', async (req, res)=> {
       try {
+        console.log(req.params);
       const user = await User.findById(req.session.userId);
-      user.foods.push(req.params.id);
+      console.log(user.userFoods);
+      await  user.userFoods.push(req.params.id);
+
       await user.save();
+
       res.json(user);
       } catch(err){
             res.send(err);
       }
+
 });
 
 module.exports = router;

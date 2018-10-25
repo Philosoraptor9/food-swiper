@@ -6,63 +6,13 @@ const bcrypt = require('bcryptjs');
 const requireLogin = require('../middleware/requireLogin');
 
 
-// On Login -- put edit user on same page?? Or include link to edit page/partials navbar
-router.get('/', requireLogin, async (req, res) => {
-try {
-    const foundUser = await User.findById(req.session.userId);
-    res.render('users/profile.ejs', {
-        user: foundUser
-        });
-    }catch(err){
-        res.send(err)
-    }
-})
-
 // New user route
 router.get('/new', (req, res) => {
     res.render('auth/login.ejs');
 });
 
-
-// Edit User - put route??
-router.get('/:id/edit', requireLogin, async (req, res) => {
-    try {
-    const foundUser = await User.findById(req.session.userId);
-    res.render('users/edit.ejs', {
-        user: foundUser
-        });
-    }catch(err){
-        res.send(err)
-    }
-});
-
-// Show profile route (will also show all the foods you've swiped right for)
-router.get('/:id', requireLogin, async (req, res) =>{
-    res.render('users/profile.ejs');
-});
-
-// Delete User
-router.delete('/:id', requireLogin, async (req, res) => {
-    try{
-    const user = User.findByIdAndDelete(req.params.id);
-
-        for (let i = 0; user.reviews.length; i++) {
-            await Review.findByIdAndDelete(user.reviews[i]._id)
-        }
-
-        for (let i = 0; user.foods.length; i++) {
-            await Food.findByIdAndDelete(user.foods[i]._id)
-        }
-
-        await User.findByIdAndDelete(req.params.id);
-        res.redirect('/')
-    } catch (err) {
-        res.send(err);
-    }
-})
-
 router.post('/', async (req, res)=>{
-   console.log(req.body.food);
+// console.log(req.body.food);
     try{
     // console.log(req.body);
     const hashedPassword = await bcrypt.hash(req.body.password, await bcrypt.genSalt(12));
@@ -78,5 +28,37 @@ router.post('/', async (req, res)=>{
         res.send(err);
     }
 })
+
+// Show/edit profile route (will also show all the foods you've swiped right for -
+// add foods in this route)
+router.get('/:id', requireLogin, async (req, res, next) =>{
+    try {
+    const foundUser = await User.findById(req.params.id).populate('userFoods');
+    console.log(foundUser);
+    res.render('users/profile.ejs', {
+        user: foundUser
+        });
+    }catch(err){
+        next(err)
+    }
+});
+
+// Edit user
+router.put('/:id', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, (err, updateUser) => {
+      res.redirect('users/profile.ejs');
+    });
+});
+
+// Delete User
+router.delete('/:id', requireLogin, async (req, res) => {
+    try{
+        await User.findByIdAndDelete(req.params.id);
+        res.redirect('/')
+    } catch (err) {
+        res.send(err);
+    }
+})
+
 
 module.exports = router;
