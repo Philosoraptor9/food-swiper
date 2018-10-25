@@ -9,17 +9,25 @@
 <body>
     <h1>Here's your profile and all your foods</h1>
 
-   <form action="/user/<%=user.id%>?_method=PUT" method="POST"> <p>Edit your profile</p> </form>
+   <form action="/user/<%=user.id%>?_method=PUT" method="POST"> <p>Change your username</p> 
+    <input type="text" name="name" value="<%=user.username%>">
+    <button type="submit">Change</button>
+    </form>
 
-    <form action="/user/<%=user.id%>?_method=DELETE" method="POST"> <p>Delete your profile</p> </form>
+    <form action="/user/<%=user.id%>?_method=DELETE" method="POST"> <p>Delete your profile</p>
+    <button type="submit">Delete</button>
+    </form>
 
     <!--- make sure this is only deleting from the user's food array and not the whole app --->
+    <ul>
     <% for (let i = 0; i < user.userFoods.length; i++) { %>
+        <li><a href="user.userFoods[i].name"></a></li>
 
-    <form action="/user/<%=user.userFoods[i].id%>?_method=DELETE" method="POST"> <p>Delete dat food</p> </form>
+    <form action="/user/<%=user.userFoods[i].id%>?_method=DELETE" method="POST"> 
+        <p>Delete dat food</p> </form>
 
    <% } %>
-    
+    </ul>
 
      <a href="/auth/logout">Logout</a>
 
