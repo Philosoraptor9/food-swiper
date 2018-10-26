@@ -30,24 +30,37 @@ h1 {
 }
 .stack {
   width: 400px;
-  margin: 100px auto;
+  margin: 200px auto;
 }
+.card-img-top{
+  height: 200px;
 
-.card {
-  /*Style of the card*/
-  height: 250px;
-  width: 400px;
-  max-width: 100%;
-  background: white;
-  border: 1px solid grey;
+}
+.navbar-brand{
   position: absolute;
+   left: 50%;
+   margin-left: -150px !important;  /* 50% of your logo width */
+   display: block;
+   margin-top: 35px;
+
+}
+.card {
+  display: block;
+    margin-bottom: 20px;
+    margin-top: 100px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    transition: box-shadow .25s;
+    position: absolute;
 }
 .btn{
 background-color:rgb(233, 38, 30)
 }
 
 .card-body{
-  background-color:rgb(79, 118, 242) ;
+  background-color:white;
   padding: 0.25rem;
   color:rgb(47, 47, 47)
 }
@@ -56,13 +69,6 @@ background-color:rgb(233, 38, 30)
   transition: transform 0.5s;
 
   &.done {
-    display: none;
-  }
-}
-.js-swiping-card {
-  transition: transform 0.5s;
-
-  &.done {rgb(138, 110, 242)
     display: none;
   }
 }
