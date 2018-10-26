@@ -1,6 +1,7 @@
 {
   "name": "food-swiper",
   "version": "1.0.0",
+  "engines": {"node": "8.9.1"},
   "description": "Web app for users to explore and save their favorite foods by type, meal, and area // Restaurant // Pic of food // Name // Address // Menu",
   "main": "server.js",
   "dependencies": {

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/foodSwiper',  { useNewUrlParser: true });
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/foodSwiper'
+
+mongoose.connect(mongoURI,  { useNewUrlParser: true });
 
 mongoose.connection.on('connected', () => {
   console.log('mongoose is connected');

@@ -90,7 +90,7 @@ app.get('/', (req, res) => {
     res.render('auth/login.ejs');
   });
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
     console.log(`App is listening on port ${port}`);
