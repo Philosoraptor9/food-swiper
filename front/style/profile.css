@@ -1,10 +1,18 @@
+
 body {
   background: url("food.jpeg")no-repeat center center fixed;
-
+ padding-top: 150px;
+ margin-top: 10px;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+.edit{
+  padding: 30px 0;
+  margin-top:20px;
+  background-color: rgba(247, 242, 242, 0.89);
+
 }
 .checked {
     color: rgb(255,215,0);
@@ -29,12 +37,44 @@ h1 {
   color: black;
 }
 
+.card-img-top{
+  height: 200px;
+
+}
+.navbar-brand{
+  position: absolute;
+   left: 50%;
+   margin-left: -150px !important;  /* 50% of your logo width */
+   display: block;
+   margin-top: 35px;
+
+}
+.card {
+  display: block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    transition: box-shadow .25s;
+
+}
 .btn{
 background-color:rgb(233, 38, 30)
 }
 
 .card-body{
-  background-color:rgb(79, 118, 242) ;
+  background-color:white;
   padding: 0.25rem;
   color:rgb(47, 47, 47)
+}
+
+.js-swiping-card {
+  transition: transform 0.5s;
+
+  &.done {
+    display: none;
+  }
 }
