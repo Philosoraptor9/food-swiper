@@ -50,7 +50,7 @@ router.get('/:id', requireLogin, async (req, res) => {
 // Post swiped food to user
 router.post('/:id/like', async (req, res)=> {
       try {
-        console.log(req.params);
+      console.log(req.params);
       const user = await User.findById(req.session.userId);
       console.log(user.userFoods);
       await  user.userFoods.push(req.params.id);
@@ -64,7 +64,6 @@ router.post('/:id/like', async (req, res)=> {
 
 });
 
-// Delete route
 
 
 module.exports = router;

@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 
 mongoose.set('useCreateIndex', true)
+app.use(express.static(__dirname + '/front/images'));
 
 require('./db/db');
 
@@ -39,7 +40,7 @@ const store = new MongoDBStore({
 store.on('connected', function() {
   store.client; // The underlying MongoClient object from the MongoDB driver
 });
- 
+
 // Catch errors
 store.on('error', function(error) {
   console.log(error);

@@ -7,7 +7,28 @@ background-size: cover;
 height: 100%;
 font-family: 'Numans', sans-serif;
 }
+.nav-item {
+  color: black;
+}
+.nav-link{
+  color: black;
+}
+.stack {
+  width: 400px;
+  margin: 200px auto;
+}
+.card-img-top{
+  height: 200px;
 
+}
+.navbar-brand{
+  position: absolute;
+   left: 50%;
+   margin-left: -150px !important;  /* 50% of your logo width */
+   display: block;
+   margin-top: 65px;
+
+}
 .container{
 height: 100%;
 align-content: center;
